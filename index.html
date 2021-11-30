@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- others -->
+  <meta charset="utf-8" />
+  <title>Elo Rated Tournament</title>
+  <meta name="description" content="A website to run locally Elo rated tournaments">
+  <meta name="keywords" content="Elo,Elo Rate,Tournament">
+  <meta name="author" content="Paul Dubois">
+  <link rel="icon" type="image/png" href="img/empty.png" />
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Elo Rated Tournament</h1>
+    </header>
+    <main>
+        <div>
+          <h2>Teams/Players List:</h2>
+          <ul id="teams"></ul>
+          <button onclick="add_team();">Add one player/team</button>
+        </div>
+        <div>
+          <h2>Games List:</h2>
+          <ul id="games"></ul>
+          <button onclick="add_game();">Add a game</button>
+        </div>
+        <button onclick="write_params();">Save</button>
+
+    </main>
+</body>
+
+<script src="script.js"></script>
+</html>
