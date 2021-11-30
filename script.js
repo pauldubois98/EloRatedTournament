@@ -5,8 +5,11 @@ var games_ul=document.getElementById("games")
 var teams = [];
 var games = [];
 
+var team_selects = document.getElementsByClassName("team_select");
+var team_selects_str = "<option value=\"\">Select</option>\n";
 
 
+var team_inputElement = document.querySelector('.team_input');
 
 
 function findGetParameter(parameterName) {
@@ -25,31 +28,49 @@ function findGetParameter(parameterName) {
 function add_team(teamName=null){
     var li = document.createElement('li');
     teams_ul.appendChild(li);
-    li.innerHTML = li.innerHTML + '<input type="text" placeholder="Team ' + teams_ul.childElementCount + '">';
+    li.innerHTML = li.innerHTML + '<input type="text" class="team_input" placeholder="Team ' + teams_ul.childElementCount + '">';
     if(teamName!=null){
         li.children[0].value = teamName;
     }
+    update_teams_names();
+    team_inputElement = document.querySelector('.team_input');
+    team_inputElement.addEventListener('change', (event) => {
+        update_teams_names();
+    });
 }
 function update_teams_names(){
     teams = [];
+    team_selects_str = "<option value=\"\">Select</option>\n";
     for (var i = 0; i < teams_ul.children.length; i++) {
         var team_li = teams_ul.children[i];
+        var team_name = "";
+        var team_display = "";
         if(team_li.children[0].value!=""){
-            teams = teams.concat([team_li.children[0].value])
+            team_name = team_li.children[0].value;
+            team_display = team_li.children[0].value;
         } else{
-            //teams = teams.concat([team_li.children[0].placeholder])
-            teams = teams.concat([""])
+            team_name = "";
+            team_display =  team_li.children[0].placeholder;
         }
+        teams = teams.concat([team_name]);
+        team_selects_str += "<option value=\""+team_display+"\">"+team_display+"</option>\n";
     }
-    console.log(teams)
+    team_selects = document.getElementsByClassName("team_select");
+    for(var i=0; i<team_selects.length; i++){
+        team_selects[i].innerHTML = team_selects_str;
+    }
 }
-
+function update_games_ids(){
+    // TODO
+}
 function add_game(){
     var li = document.createElement('li');
     games_ul.appendChild(li);
-    li.innerHTML = li.innerHTML + '<input type="text" placeholder="Team A">'
-                 + ' - '        + '<input type="text" placeholder="Team B">';
+    li.innerHTML = li.innerHTML + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
+                 + ' - '        + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n';
 }
+
+
 
 function write_params(){
     update_teams_names();
@@ -74,6 +95,7 @@ if(teams==null){
         add_team(teams[i]);
         console.log(teams[i])
     }
+    update_teams_names();
 }
 
 
