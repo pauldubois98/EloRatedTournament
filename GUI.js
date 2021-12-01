@@ -4,14 +4,9 @@ var teams_ul=document.getElementById("teams")
 var games_ul=document.getElementById("games")
 var teams = [];
 var games = [];
-
 var team_selects = document.getElementsByClassName("team_select");
 // var team_selects_str = "<option value=\"\">Select</option>\n";
 var team_selects_str = "";
-
-
-var team_inputElement = document.querySelector('.team_input');
-
 
 function findGetParameter(parameterName) {
     var result = null,
@@ -94,6 +89,9 @@ function add_game(teamA=null,comp=null,teamB=null){
             li.children[2].value = "Team "+(teamB+1);
         }
     }
+    if(teamA==null && comp==null && teamB==null){
+        update_games_ids();
+    }
     li.children[0].addEventListener('change', (event) => {
         update_games_ids();
     });
@@ -103,7 +101,6 @@ function add_game(teamA=null,comp=null,teamB=null){
     li.children[2].addEventListener('change', (event) => {
         update_games_ids();
     });
-    update_games_ids();
 }
 function update_games_ids(){
     games = [];
@@ -124,6 +121,7 @@ function update_games_ids(){
 
 function write_params(){
     update_teams_names();
+    update_games_ids();
     teams_GET = encodeURIComponent(JSON.stringify(teams));
     games_GET = encodeURIComponent(JSON.stringify(games));
     window.location.href = window.location.href.split("?")[0] 
@@ -172,7 +170,10 @@ if(teams==null){
 } else{
     load_teams();
     update_teams_names();
-    update_team_select();
+}
+if(games.length==0){
+    add_game();
+} else{
     load_games();
 }
 
