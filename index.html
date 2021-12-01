@@ -25,28 +25,11 @@
         <div>
           <h2>Teams/Players List:</h2>
           <ul id="teams"></ul>
-          <button onclick="add_team();">Add one player/team</button>
+          <button onclick="add_team(); update_teams_names();">Add one player/team</button>
         </div>
         <div>
           <h2>Games List:</h2>
-          <ul id="games">
-            <li>
-              <select class="team_select" name="team_select">
-                <option value="">Select team</option>
-                <option value="blah">blah</option>
-                <option value="team1">team1</option>
-                <option value="bleh">bleh</option>
-              </select>
-              -
-              <select class="team_select" name="team_select">
-                <option value="">Select team</option>
-                <option value="blah">blah</option>
-                <option value="team1">team1</option>
-                <option value="bleh">bleh</option>
-              </select>
-          </li>
-
-          </ul>
+          <ul id="games"></ul>
           <button onclick="add_game();">Add a game</button>
         </div>
         <button onclick="write_params();">Save</button>
