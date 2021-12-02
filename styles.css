@@ -6,3 +6,42 @@ body{
 h1{
     color: brown;
 }
+
+main{
+    display: flex;
+}
+main div{
+    margin: 1em;
+}
+
+#games{
+    padding: 0;
+}
+#games li{
+    list-style-type: none;
+}
+#leader-board{
+    margin: 0.5em;
+}
+
+input{
+    margin: 2px;
+}
+button{
+    margin: 2px;
+}
+select{
+    margin: 2px;
+}
+.nb-input{
+    width: 5em;
+}
+span{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 8.75em;
+}
+p{
+    margin: 0;
+}

@@ -25,16 +25,40 @@
         <div>
           <h2>Teams/Players List:</h2>
           <ul id="teams"></ul>
-          <button onclick="add_team(); update_teams_names();">Add one player/team</button>
+          <button onclick="add_team();">Add one player/team</button><br>
+          <button onclick="remove_team();">Remove one player/team</button>
         </div>
         <div>
           <h2>Games List:</h2>
           <ul id="games"></ul>
           <button onclick="add_game();">Add a game</button>
+          <button onclick="remove_game();">Remove a game</button>
         </div>
-        <button onclick="write_params();">Save</button>
-
+        <div>
+          <h2>Leader board:</h2>
+          <span><label>Init Elo:</label><input type="number" class="nb-input" placeholder="800"></span>
+          <span><label>K:</label><input type="number" class="nb-input" placeholder="20"></span>
+          <table id="leader-board">
+            <tr>
+              <th style="min-width: 3em; text-align: left;">Rank</th>
+              <th style="min-width: 4.5em; text-align: left;">Name</th>
+              <th style="min-width: 2.5em; text-align: left;">Elo</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>oizvs</td>
+              <td>810</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>slkv</td>
+              <td>790</td>
+            </tr>
+          </table> 
+        </div>
     </main>
+    <button onclick="write_params();">Save</button>
+
 </body>
 
 <script src="GUI.js"></script>

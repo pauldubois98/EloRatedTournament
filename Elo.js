@@ -1,10 +1,10 @@
 
 
-function Elo_history(teams, games, K=20){
+function Elo_history(teams, games, K=20, initElo=800){
     console.log(teams)
     var history = []
     var Elos = Array(...teams);
-    Elos.fill(400)
+    Elos.fill(initElo)
     history = history.concat([Elos]);
     console.log(Elos)
     for(var i=0; i<games.length; i++){
@@ -21,10 +21,10 @@ function Elo_history(teams, games, K=20){
                 scoreA = 0;
                 scoreB = 1;
             }
-            var expected_scoreA = 1 / (1 + 10**((teamB_Elo - teamA_Elo)/200))
-            var expected_scoreB = 1 / (1 + 10**((teamA_Elo - teamB_Elo)/200))
-            teamA_Elo = teamA_Elo + K * (scoreA-expected_scoreA)
-            teamB_Elo = teamB_Elo + K * (scoreB-expected_scoreB)
+            var expected_scoreA = 1 / (1 + 10**((teamB_Elo - teamA_Elo)/200));
+            var expected_scoreB = 1 / (1 + 10**((teamA_Elo - teamB_Elo)/200));
+            teamA_Elo = Math.round(teamA_Elo + K * (scoreA-expected_scoreA));
+            teamB_Elo = Math.round(teamB_Elo + K * (scoreB-expected_scoreB));
             Elos[games[i][0]] = teamA_Elo;
             Elos[games[i][2]] = teamB_Elo;
             history = history.concat([Elos]);

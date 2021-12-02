@@ -1,5 +1,3 @@
-
-
 var teams_ul=document.getElementById("teams")
 var games_ul=document.getElementById("games")
 var teams = [];
@@ -41,6 +39,10 @@ function add_team(teamName=null){
         full();
     });
 }
+function remove_team(){
+    teams_ul.children[teams_ul.children.length-1].remove()
+    full();
+}
 function update_teams_names(){
     teams = [];
     // team_selects_str = "<option value=\"\">Select</option>\n";
@@ -60,7 +62,6 @@ function update_teams_names(){
         team_selects_str += "<option value=\""+team_display+"\">"+team_display+"</option>\n";
     }
 }
-
 function update_team_select(){
     team_selects = document.getElementsByClassName("team_select");
     for(var i=0; i<team_selects.length; i++){
@@ -68,6 +69,10 @@ function update_team_select(){
     }
 }
 
+function remove_game(){
+    games = games.slice(0,-1);
+    refresh_games();
+}
 function add_game(teamA=null,comp=null,teamB=null){
     var li = document.createElement('li');
     games_ul.appendChild(li);
@@ -118,6 +123,31 @@ function update_games_ids(){
         games = games.concat([[teamA, comp, teamB]]);
     }
 }
+function refresh_games(){
+    var i=0;
+    while(i<games.length){
+        if(i<games_ul.children.length){
+            var li = games_ul.children[i];
+            li.children[0].value = teams[games[i][0]];
+            if(teams[games[i][0]]==""){
+                li.children[0].value = "Team "+(games[i][0]+1);
+            }
+            li.children[1].value = games[i][1];
+            li.children[2].value = teams[games[i][2]];
+            if(teams[games[i][2]]==""){
+                li.children[2].value = "Team "+(games[i][2]+1);
+            }
+        } else{
+            add_game(games[i][0],games[i][1],games[i][2]);
+        }
+        i++;
+    }
+    while(i<games_ul.children.length){
+        games_ul.children[i].remove()
+        i++;
+    }
+
+}
 
 function write_params(){
     update_teams_names();
@@ -143,24 +173,6 @@ function load_games(){
         add_game(games[i][0],games[i][1],games[i][2]);
     }
 }
-function refresh_games(){
-    for(var i=0; i<games.length; i++){
-        if(i<games_ul.children.length){
-            var li = games_ul.children[i];
-            li.children[0].value = teams[games[i][0]];
-            if(teams[games[i][0]]==""){
-                li.children[0].value = "Team "+(games[i][0]+1);
-            }
-            li.children[1].value = games[i][1];
-            li.children[2].value = teams[games[i][2]];
-            if(teams[games[i][2]]==""){
-                li.children[2].value = "Team "+(games[i][2]+1);
-            }
-        } else{
-            add_game(games[i][0],games[i][1],games[i][2]);
-        }
-    }
-}
 
 
 
@@ -176,8 +188,3 @@ if(games.length==0){
 } else{
     load_games();
 }
-
-
-
-
-
