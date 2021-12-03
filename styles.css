@@ -36,11 +36,16 @@ select{
 .nb-input{
     width: 5em;
 }
-span{
+.leader-board-param{
     display: flex;
     align-items: center;
     justify-content: end;
     width: 8.75em;
+}
+.sep{
+    margin-top: 1em; 
+    width: 0.1em;
+    background: dimgray;
 }
 p{
     margin: 0;

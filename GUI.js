@@ -24,6 +24,8 @@ function full(){
     update_teams_names();
     update_team_select();
     refresh_games();
+    Elo_history();
+    refresh_Elo();
 }
 
 function add_team(teamName=null){
@@ -144,11 +146,18 @@ function refresh_games(){
     }
     while(i<games_ul.children.length){
         games_ul.children[i].remove()
-        i++;
     }
-
 }
 
+function reset(){
+    teams = [];
+    games = [];
+    teams_GET = encodeURIComponent(JSON.stringify(teams));
+    games_GET = encodeURIComponent(JSON.stringify(games));
+    window.location.href = window.location.href.split("?")[0] 
+                         + '?teams=' + teams_GET
+                         + '&games=' + games_GET;
+}
 function write_params(){
     update_teams_names();
     update_games_ids();
@@ -177,7 +186,7 @@ function load_games(){
 
 
 read_params();
-if(teams==null){
+if(teams==null || teams.length==0){
     add_team();
 } else{
     load_teams();
@@ -188,3 +197,5 @@ if(games.length==0){
 } else{
     load_games();
 }
+Elo_history();
+refresh_Elo();

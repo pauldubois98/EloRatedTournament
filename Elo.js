@@ -1,12 +1,15 @@
+var initElo_input=document.getElementById("init-Elo");
+var K_input=document.getElementById("K");
+var Elo = []
+var leader_board_table=document.getElementById("leader-board").children[0];
 
-
-function Elo_history(teams, games, K=20, initElo=800){
-    console.log(teams)
+function Elo_history(){
+    var initElo = Number(initElo_input.value);
+    var K = Number(K_input.value);
     var history = []
-    var Elos = Array(...teams);
+    Elos = Array(...teams);
     Elos.fill(initElo)
     history = history.concat([Elos]);
-    console.log(Elos)
     for(var i=0; i<games.length; i++){
         if(games[i][0] != games[i][2]){
             var teamA_Elo = Elos[games[i][0]];
@@ -28,7 +31,37 @@ function Elo_history(teams, games, K=20, initElo=800){
             Elos[games[i][0]] = teamA_Elo;
             Elos[games[i][2]] = teamB_Elo;
             history = history.concat([Elos]);
-            console.log(Elos)
         }
+    }
+}
+function refresh_Elo(){
+    var teams_score = []
+    for(var i=0; i<teams.length; i++){
+        var Elo = Elos[i];
+        var team = teams[i];
+        if(teams[i]==""){
+            team = "Team "+String(i+1);
+        }
+        teams_score = teams_score.concat([[Elo,team]]);
+    }
+    teams_score.sort().reverse()
+    var i=0;
+    while(i<teams.length){
+        if(i+1<leader_board_table.children.length){
+            var tr = leader_board_table.children[i+1];
+            tr.children[0].textContent = String(i+1);
+            tr.children[1].textContent = teams_score[i][1];
+            tr.children[2].textContent = String(teams_score[i][0]);
+        } else{
+            var tr = document.createElement('tr');
+            tr.innerHTML += "<td>"+String(i+1)+"</td>\n" 
+                         +  "<td>"+teams_score[i][1]+"</td>\n"
+                         +  "<td>"+String(teams_score[i][0])+"</td>\n"
+            leader_board_table.appendChild(tr);
+        }
+        i++;
+    }
+    while(i+1<leader_board_table.children.length){
+        leader_board_table.children[i+1].remove()
     }
 }
