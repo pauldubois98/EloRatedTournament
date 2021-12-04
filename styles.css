@@ -5,13 +5,18 @@ body{
 }
 h1{
     color: brown;
+    color: rgb(148, 42, 42);
+}
+h2{
+    color: slateblue;
+    color: rgb(63, 37, 90);
 }
 
 main{
     display: flex;
 }
 main div{
-    margin: 1em;
+    margin: 1.5em;
 }
 
 #games{

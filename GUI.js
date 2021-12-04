@@ -6,19 +6,6 @@ var team_selects = document.getElementsByClassName("team_select");
 // var team_selects_str = "<option value=\"\">Select</option>\n";
 var team_selects_str = "";
 
-function findGetParameter(parameterName) {
-    var result = null,
-        tmp = [];
-    location.search
-        .substr(1)
-        .split("&")
-        .forEach(function (item) {
-          tmp = item.split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-    return result;
-}
-
 function full(){
     update_games_ids();
     update_teams_names();
@@ -98,15 +85,23 @@ function add_game(teamA=null,comp=null,teamB=null){
     }
     if(teamA==null && comp==null && teamB==null){
         update_games_ids();
+        Elo_history();
+        refresh_Elo();
     }
     li.children[0].addEventListener('change', (event) => {
         update_games_ids();
+        Elo_history();
+        refresh_Elo();
     });
     li.children[1].addEventListener('change', (event) => {
         update_games_ids();
+        Elo_history();
+        refresh_Elo();
     });
     li.children[2].addEventListener('change', (event) => {
         update_games_ids();
+        Elo_history();
+        refresh_Elo();
     });
 }
 function update_games_ids(){
@@ -149,27 +144,37 @@ function refresh_games(){
     }
 }
 
+function URL_data(){
+    var data = [teams, games, initElo_input.value, K_input.value];
+    var data_GET = encodeURIComponent(JSON.stringify(data));
+    var URL = window.location.href.split("?")[0] + '?data=' + data_GET;
+    return URL;
+}
 function reset(){
     teams = [];
     games = [];
-    teams_GET = encodeURIComponent(JSON.stringify(teams));
-    games_GET = encodeURIComponent(JSON.stringify(games));
-    window.location.href = window.location.href.split("?")[0] 
-                         + '?teams=' + teams_GET
-                         + '&games=' + games_GET;
+    initElo_input.value = "800";
+    K_input.value = "20";
+    window.location.href = URL_data();
 }
 function write_params(){
     update_teams_names();
     update_games_ids();
-    teams_GET = encodeURIComponent(JSON.stringify(teams));
-    games_GET = encodeURIComponent(JSON.stringify(games));
-    window.location.href = window.location.href.split("?")[0] 
-                         + '?teams=' + teams_GET
-                         + '&games=' + games_GET;
+    window.location.href = URL_data();
+}
+function email_params(){
+    update_teams_names();
+    update_games_ids();
+    window.location.href = "mailto:?subject=Elo Rated Tournament&body=Checkout the results here: " + URL_data();
 }
 function read_params(){
-    teams = JSON.parse(decodeURIComponent(findGetParameter('teams')));
-    games = JSON.parse(decodeURIComponent(findGetParameter('games')));
+    if(location.search.replace("?data=", "")!=""){
+        data = JSON.parse(decodeURIComponent(location.search.replace("?data=", "")));
+        teams = data[0];
+        games = data[1];
+        initElo_input.value = data[2];
+        K_input.value = data[3];
+    }
 }
 
 function load_teams(){

@@ -32,7 +32,7 @@
         <div>
           <h2>Games List:</h2>
           <ul id="games"></ul>
-          <button onclick="add_game();">Add a game</button>
+          <button onclick="add_game();">Add a game</button><br>
           <button onclick="remove_game();">Remove a game</button>
         </div>
         <span class="sep"></span>
@@ -40,11 +40,11 @@
           <h2>Leader board:</h2>
           <span class="leader-board-param">
             <label>Init Elo:</label>
-            <input type="number" class="nb-input" placeholder="800" value="800" id="init-Elo">
+            <input type="number" class="nb-input" placeholder="800" value="800" id="init-Elo" oninput="Elo_history(); refresh_Elo();">
           </span>
           <span class="leader-board-param">
             <label>K:</label>
-            <input type="number" class="nb-input" placeholder="20" value="20" id="K">
+            <input type="number" class="nb-input" placeholder="20" value="20" id="K" oninput="Elo_history(); refresh_Elo();">
           </span>
           <table id="leader-board">
             <tr>
@@ -58,7 +58,7 @@
     <span style="background: dimgray; margin: 1em; height: 0.1em; width: 50%;"></span>
     <div>
       <button onclick="write_params();">Save in URL</button>
-      <button onclick="email();">E-mail URL</button>
+      <button onclick="email_params();">E-mail URL</button>
       <button onclick="reset();">Reset</button>
     </div>
 

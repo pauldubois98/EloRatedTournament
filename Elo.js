@@ -5,7 +5,13 @@ var leader_board_table=document.getElementById("leader-board").children[0];
 
 function Elo_history(){
     var initElo = Number(initElo_input.value);
+    if(initElo_input.value==""){
+        initElo = 800;
+    }
     var K = Number(K_input.value);
+    if(K_input.value==""){
+        K = 20;
+    }
     var history = []
     Elos = Array(...teams);
     Elos.fill(initElo)
@@ -44,7 +50,7 @@ function refresh_Elo(){
         }
         teams_score = teams_score.concat([[Elo,team]]);
     }
-    teams_score.sort().reverse()
+    teams_score = teams_score.sort( function(a, b) {return a[0] - b[0];} ).reverse()
     var i=0;
     while(i<teams.length){
         if(i+1<leader_board_table.children.length){
