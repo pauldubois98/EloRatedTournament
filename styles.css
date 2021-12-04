@@ -22,12 +22,17 @@ main{
 main div{
     margin: 1.5em;
 }
+#global-btns{
+    display: flex;
+}
 
 #games{
     padding: 0;
 }
 #games li{
     list-style-type: none;
+    display: flex;
+    align-items: center;
 }
 #leader-board{
     margin: 0.5em;
@@ -38,6 +43,25 @@ input{
 }
 button{
     margin: 2px;
+}
+.btn-icon_txt{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2px;
+    padding-right: 3px;
+}
+.btn-icon_txt img{
+    margin-right: 5px;
+}
+.arrow{
+    padding: 0;
+    height: 22px;
+}
+.arrow-icon{
+    height: 18px;
 }
 select{
     margin: 2px;

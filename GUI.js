@@ -66,11 +66,16 @@ function add_game(teamA=null,comp=null,teamB=null){
     var n = games_ul.children.length
     var li = document.createElement('li');
     games_ul.appendChild(li);
+    // li.innerHTML   += '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
+    //                 + '<select class="compare" name="compare"><option value="\>">\></option><option value="\=">\=</option><option value="\<">\<</option></select>\n'
+    //                 + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
+    //                 + '<button onclick="move_up('+String(n)+');">Move Up</button>\n'
+    //                 + '<button onclick="move_down('+String(n)+');">Move Down</button>';
     li.innerHTML   += '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
                     + '<select class="compare" name="compare"><option value="\>">\></option><option value="\=">\=</option><option value="\<">\<</option></select>\n'
                     + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
-                    + '<button onclick="move_up('+String(n)+');">Move Up</button>\n'
-                    + '<button onclick="move_down('+String(n)+');">Move Down</button>';
+                    + '<button onclick="move_up('+String(n)+');" class="arrow"><img src="svg/arrow_upward_black_24dp.svg" alt="move up icon" class="arrow-icon"></button>\n'
+                    + '<button onclick="move_down('+String(n)+');" class="arrow"><img src="svg/arrow_downward_black_24dp.svg" alt="move down icon" class="arrow-icon"></button>';
     games_ul.children[0].children[3].disabled = true
     games_ul.children[n].children[4].disabled = true
     if(n>0){

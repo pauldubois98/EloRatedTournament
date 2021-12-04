@@ -25,15 +25,27 @@
         <div>
           <h2>Teams/Players List:</h2>
           <ul id="teams"></ul>
-          <button onclick="add_team();">Add one player/team</button><br>
-          <button onclick="remove_team();">Remove one player/team</button>
+          <button onclick="add_team();" class="btn-icon_txt">
+            <img src="svg/group_add_black_24dp.svg" alt="add team icon" class="btn-icon">
+            Add one player/team
+          </button>
+          <button onclick="remove_team();" class="btn-icon_txt">
+            <img src="svg/group_remove_black_24dp.svg" alt="remove team icon" class="btn-icon">
+            Remove one player/team
+          </button>
         </div>
         <span class="sep"></span>
         <div>
           <h2>Games List:</h2>
           <ul id="games"></ul>
-          <button onclick="add_game();">Add a game</button><br>
-          <button onclick="remove_game();">Remove a game</button>
+          <button onclick="add_game();" class="btn-icon_txt">
+            <img src="svg/game_add_black_24dp.svg" alt="add game icon" class="btn-icon">
+            Add a game
+          </button>
+          <button onclick="remove_game();" class="btn-icon_txt">
+            <img src="svg/game_remove_black_24dp.svg" alt="remove game icon" class="btn-icon">
+            Remove a game
+          </button>
         </div>
         <span class="sep"></span>
         <div>
@@ -56,10 +68,19 @@
         </div>
     </main>
     <span style="background: dimgray; margin: 1em; height: 0.1em; width: 50%;"></span>
-    <div>
-      <button onclick="write_params();">Save in URL</button>
-      <button onclick="email_params();">E-mail URL</button>
-      <button onclick="reset();">Reset</button>
+    <div id="global-btns">
+      <button onclick="write_params();" class="btn-icon_txt">
+        <img src="svg/save_black_24dp.svg" alt="URL save icon" class="btn-icon">
+        Save in URL
+      </button>
+      <button onclick="email_params();" class="btn-icon_txt">
+        <img src="svg/email_black_24dp.svg" alt="email icon" class="btn-icon">
+        E-mail URL
+      </button>
+      <button onclick="reset();" class="btn-icon_txt">
+        <img src="svg/restart_alt_black_24dp.svg" alt="reset icon" class="btn-icon">
+        Reset
+      </button>
     </div>
 
 </body>
