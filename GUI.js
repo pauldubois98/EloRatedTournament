@@ -63,11 +63,19 @@ function remove_game(){
     refresh_games();
 }
 function add_game(teamA=null,comp=null,teamB=null){
+    var n = games_ul.children.length
     var li = document.createElement('li');
     games_ul.appendChild(li);
     li.innerHTML   += '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
                     + '<select class="compare" name="compare"><option value="\>">\></option><option value="\=">\=</option><option value="\<">\<</option></select>\n'
-                    + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n';
+                    + '<select class="team_select" name="team_select">'+team_selects_str+'</select>\n'
+                    + '<button onclick="move_up('+String(n)+');">Move Up</button>\n'
+                    + '<button onclick="move_down('+String(n)+');">Move Down</button>';
+    games_ul.children[0].children[3].disabled = true
+    games_ul.children[n].children[4].disabled = true
+    if(n>0){
+        games_ul.children[n-1].children[4].disabled = false
+    }
     if(teamA!=null){
         li.children[0].value = teams[teamA];
         if(teams[teamA]==""){
@@ -141,6 +149,29 @@ function refresh_games(){
     }
     while(i<games_ul.children.length){
         games_ul.children[i].remove()
+    }
+}
+function move_up(n){
+    if(n>0){
+        update_games_ids();
+        var temp = games[n];
+        games[n] = games[n-1];
+        games[n-1] = temp;
+        refresh_games();
+        Elo_history();
+        refresh_Elo();
+    }
+    
+}
+function move_down(n){
+    if(n+1<games.length){
+        update_games_ids();
+        var temp = games[n];
+        games[n] = games[n+1];
+        games[n+1] = temp;
+        refresh_games();
+        Elo_history();
+        refresh_Elo();
     }
 }
 
